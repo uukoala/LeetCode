@@ -1,9 +1,9 @@
 public class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-        Map<Integer, Integer> res = new HashMap<Integer, Integer>();
+        Set<Integer> res = new HashSet<Integer>();
         for(int i = 0; i<nums.length; i++){
-            if(res.containsKey(nums[i]) && (i - res.get(nums[i]) <= k)) return true;
-            res.put(nums[i], i);
+            if(i>k) res.remove(nums[i-k-1]);
+            if(!res.add(nums[i])) return true;
         }
         return false;
     }
